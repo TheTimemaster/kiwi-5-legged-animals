@@ -42,6 +42,7 @@ const Event: FunctionComponent = () => {
     useEffect(() => {
         getEvent();
     }, []);
+
     return eventErr ? (
         <div>Error</div>
     ) : (

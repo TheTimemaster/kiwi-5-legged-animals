@@ -14,10 +14,19 @@ const Wrapper = styled.article`
     background-color: #0070f3;
     display: flex;
     overflow: hidden;
+
+    &:focus,
+    &:hover {
+        outline: ${(p) => p.theme.colors.primary._80.toString()} solid 5px;
+    }
 `;
 
 const StyledInput = styled.input`
     width: 100%;
+
+    padding-left: 20px;
+    outline: none !important;
+    border: 0;
 `;
 
 const SearchButton = styled.button`
@@ -30,17 +39,19 @@ const ShadowWrapper = WithShadow(Wrapper);
 
 type SearchbarProps = {
     initialContent: string;
-    onChange: () => void;
+    onChange: (content: string) => void;
 };
 
 const Searchbar: FunctionComponent<SearchbarProps> = (props) => {
+    const [content, setContent] = useState(props.initialContent);
+
     return (
         <ShadowWrapper>
             <StyledInput
-                value={props.initialContent}
-                onChange={props.onChange}
+                value={content}
+                onChange={(val) => setContent(val.target.value)}
             />
-            <SearchButton onClick={props.onChange} onChange={props.onChange}>
+            <SearchButton onClick={() => props.onChange(content)}>
                 Search
             </SearchButton>
         </ShadowWrapper>

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import {FunctionComponent, useEffect} from 'react';
+import {FunctionComponent, useEffect, useState} from 'react';
 import EventsSection from '../components/EventsSection';
 import EventDisplayer from '../components/EventDisplayer';
 import Header from '../components/Header';
@@ -19,6 +19,8 @@ const Home: FunctionComponent = () => {
     const [eventsData, eventsErr, getEvents] =
         useGetEndpoint<EventCore[]>('api/events');
 
+    const [search, setSearch] = useState('');
+
     useEffect(() => {
         getEvents();
     }, [getEvents]);
@@ -26,13 +28,21 @@ const Home: FunctionComponent = () => {
     return (
         <>
             <SearchSection>
-                <Searchbar initialContent={'xd'} onChange={() => {}} />
+                <Searchbar initialContent={search} onChange={setSearch} />
             </SearchSection>
             <OuterCenter>
                 {eventsErr ? (
                     <div>Error</div>
                 ) : (
-                    <EventsSection events={eventsData ?? []} />
+                    <EventsSection
+                        events={
+                            eventsData?.filter(
+                                (e) =>
+                                    e.name.includes(search) ||
+                                    search.length == 0,
+                            ) ?? []
+                        }
+                    />
                 )}
             </OuterCenter>
         </>

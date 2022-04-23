@@ -4,8 +4,8 @@ import WithShadow from './with-shadow/WithShadow';
 import {EventCore} from '../types/event';
 
 const Wrapper = styled.article`
-    max-width: 100%;
-    margin: 10px;
+    max-width: 800px;
+    margin: 30px;
     height: 50px;
     min-height: 50px;
     border-radius: 25px;
@@ -36,8 +36,13 @@ type SearchbarProps = {
 const Searchbar: FunctionComponent<SearchbarProps> = (props) => {
     return (
         <ShadowWrapper>
-            <StyledInput value={props.initialContent} />
-            <SearchButton onClick={props.onChange}>Search</SearchButton>
+            <StyledInput
+                value={props.initialContent}
+                onChange={props.onChange}
+            />
+            <SearchButton onClick={props.onChange} onChange={props.onChange}>
+                Search
+            </SearchButton>
         </ShadowWrapper>
     );
 };

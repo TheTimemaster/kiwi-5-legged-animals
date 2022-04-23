@@ -1,12 +1,13 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import {FunctionComponent} from 'react';
-import EventsListing from '../components/EventsListing';
+import EventsSection from '../components/EventsSection';
 import EventDisplayer from '../components/EventDisplayer';
 import Header from '../components/Header';
 import styled from 'styled-components';
 import Center from '../components/central/Center';
 import Searchbar from '../components/Searchbar';
+import SearchSection from '../components/SearchSection';
 
 const App = styled.div`
     margin-top: 70px;
@@ -52,10 +53,11 @@ const OuterCenter = styled(Center)`
 const Home: FunctionComponent = () => {
     return (
         <App>
-            <Header />
-            <OuterCenter>
+            <SearchSection>
                 <Searchbar initialContent={'xd'} onChange={() => {}} />
-                <EventsListing events={events} />
+            </SearchSection>
+            <OuterCenter>
+                <EventsSection events={events} />
             </OuterCenter>
         </App>
     );

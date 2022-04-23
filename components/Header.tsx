@@ -2,6 +2,13 @@ import React, {FunctionComponent, useContext, useState} from 'react';
 import styled from 'styled-components';
 import Center from './central/Center';
 import Image from 'next/image';
+import HeaderUserSection from './HeaderUserSection';
+import {User} from '../context/auth/UserContext';
+
+type HeaderProps = {
+    setUser: (user: User) => void;
+    logOut: () => void;
+};
 
 const HeaderWrapper = styled.header`
     position: fixed;
@@ -16,11 +23,15 @@ const HeaderWrapper = styled.header`
     background-color: ${(p) => p.theme.colors.white._100.toString()};
 `;
 
-const Header: FunctionComponent = () => {
+const Header: FunctionComponent<HeaderProps> = (props) => {
     return (
         <HeaderWrapper>
             <Center>
                 <Image src={'/kiwicom-logo.svg'} height={60} width={60} />
+                <HeaderUserSection
+                    setUser={props.setUser}
+                    logOut={props.logOut}
+                />
             </Center>
         </HeaderWrapper>
     );

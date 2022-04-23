@@ -10,13 +10,13 @@ type EventsListingProps = {
 const ListingWrapper = styled.main`
     display: flex;
     width: 100%;
-    margin: auto;
+    margin: 50px auto;
     flex-wrap: wrap;
     background-color: red;
     justify-content: center;
 `;
 
-const EventsListing: FunctionComponent<EventsListingProps> = (props) => {
+const EventsSection: FunctionComponent<EventsListingProps> = (props) => {
     return (
         <ListingWrapper>
             {props.events.map((ev, i) => (
@@ -26,4 +26,4 @@ const EventsListing: FunctionComponent<EventsListingProps> = (props) => {
     );
 };
 
-export default EventsListing;
+export default EventsSection;

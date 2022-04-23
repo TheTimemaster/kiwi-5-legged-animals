@@ -1,7 +1,17 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import type {AppProps} from 'next/app';
+import styled, {createGlobalStyle, ThemeContext} from 'styled-components';
+import {DefaultProductTheme} from '../styles/default-product-theme';
+import Center from '../components/central/Center';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+const GlobalStyle = createGlobalStyle`
+`;
+
+function MyApp({Component, pageProps}: AppProps) {
+    return (
+        <ThemeContext.Provider value={DefaultProductTheme}>
+            <GlobalStyle />
+            <Component {...pageProps} />
+        </ThemeContext.Provider>
+    );
 }
-export default MyApp
+export default MyApp;

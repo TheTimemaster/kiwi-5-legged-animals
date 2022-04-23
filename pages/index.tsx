@@ -23,7 +23,7 @@ const Home: FunctionComponent = () => {
 
     useEffect(() => {
         getEvents();
-    }, [getEvents]);
+    }, []);
 
     return (
         <>

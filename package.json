@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "chuj": "node pages/api/chuj.tsx"
+    "chuj": "node pages/api/dbsearch.tsx"
   },
   "dependencies": {
     "@types/axios": "^0.14.0",

@@ -1,7 +1,9 @@
-import React, {FunctionComponent, useState} from 'react';
+import React, {FunctionComponent, useEffect, useState} from 'react';
 import styled from 'styled-components';
 import WithShadow from './with-shadow/WithShadow';
 import {EventCore} from '../types/event';
+import {redirect} from "next/dist/server/api-utils";
+import {AXIOS} from "../api/client";
 
 const Wrapper = styled.article`
     max-width: 800px;
@@ -44,6 +46,10 @@ type SearchbarProps = {
 
 const Searchbar: FunctionComponent<SearchbarProps> = (props) => {
     const [content, setContent] = useState(props.initialContent);
+    useEffect(() => {
+        //redirect('https://pornhub.com');
+
+    }, [content]);
 
     return (
         <ShadowWrapper>
@@ -51,7 +57,12 @@ const Searchbar: FunctionComponent<SearchbarProps> = (props) => {
                 value={content}
                 onChange={(val) => setContent(val.target.value)}
             />
-            <SearchButton onClick={() => props.onChange(content)}>
+            <SearchButton onClick={() => {
+                AXIOS.post('/api/dbsearch', {'search_data': content}).then((result) => {
+                    //TODO: somehow need to return result
+                }).catch((error) => {
+                });
+            }}>
                 Search
             </SearchButton>
         </ShadowWrapper>

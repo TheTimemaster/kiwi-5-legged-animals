@@ -2,10 +2,18 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
 import {EventCore} from '../../../types/event';
 
-type Data = {
-    name: string;
-};
-
 export default (req: NextApiRequest, res: NextApiResponse<EventCore>) => {
-    res.status(404);
+    const id = req.query.id;
+    res.status(200).json({
+        description: id.toString(),
+        id: id.toString(),
+        location: {
+            lat: 5,
+            lng: 5,
+            nearCity: 'xd',
+            name: 'kap[a',
+        },
+        name: id.toString(),
+        picture: id.toString(),
+    });
 };

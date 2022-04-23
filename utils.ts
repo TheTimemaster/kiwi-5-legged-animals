@@ -7,3 +7,5 @@ export const jwtEncode = (data: any) => {
     const jwt = sign(data, secret);
     return jwt;
 };
+
+export const range = (n: number): number[] => Array.from(Array(50).keys());

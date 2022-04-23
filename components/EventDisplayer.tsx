@@ -2,6 +2,7 @@ import React, {FunctionComponent} from 'react';
 import styled from 'styled-components';
 import WithShadow from './with-shadow/WithShadow';
 import {EventCore} from '../types/event';
+import Link from 'next/link';
 
 const Wrapper = styled.article`
     width: 200px;
@@ -21,7 +22,11 @@ type EventDisplayerProps = {
 };
 
 const EventDisplayer: FunctionComponent<EventDisplayerProps> = (props) => {
-    return <ShadowWrapper>{props.event.name}</ShadowWrapper>;
+    return (
+        <Link href={'/event/' + props.event.id}>
+            <ShadowWrapper>{props.event.name}</ShadowWrapper>
+        </Link>
+    );
 };
 
 export default EventDisplayer;

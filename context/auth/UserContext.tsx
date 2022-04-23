@@ -20,7 +20,9 @@ type UserPersistenceProps = {
 
 // que?
 export const UserFromToken = (token: string): User => {
+    console.log(token);
     const decoded = jwtDecode(token) as any;
+    console.log('xd');
     return {
         login: decoded.username,
         id: decoded.id,

@@ -14,7 +14,12 @@ import Header from '../components/Header';
 const GlobalStyle = createGlobalStyle`
     body {
       margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
     }
+`;
+
+const App = styled.div`
+    margin-top: 70px;
 `;
 
 function MyApp({Component, pageProps}: AppProps) {
@@ -31,7 +36,9 @@ function MyApp({Component, pageProps}: AppProps) {
                 <UserPersistence setUser={setUser} />
                 <GlobalStyle />
                 <Header setUser={setUser} logOut={logOutMe} />
-                <Component {...pageProps} />
+                <App>
+                    <Component {...pageProps} />
+                </App>
             </UserContext.Provider>
         </ThemeContext.Provider>
     );

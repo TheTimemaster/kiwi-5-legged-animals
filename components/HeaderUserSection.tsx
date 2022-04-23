@@ -1,11 +1,17 @@
 import {FunctionComponent, useContext, useEffect, useState} from 'react';
 import UserContext, {User, UserFromToken} from '../context/auth/UserContext';
 import {usePostEndpoint} from '../api/hooks/usePostEndpoint';
+import {P} from '../styles/TextTypes';
+import styled from 'styled-components';
 
 export type HeaderUserSectionProps = {
     setUser: (user: User) => void;
     logOut: () => void;
 };
+
+export const Wrapper = styled.div`
+    display: flex;
+`;
 
 const HeaderUserSection: FunctionComponent<HeaderUserSectionProps> = (
     props,
@@ -21,6 +27,7 @@ const HeaderUserSection: FunctionComponent<HeaderUserSectionProps> = (
     useEffect(() => {
         if (loginRes) {
             const token = loginRes.token;
+            console.log('HeaderUser:' + JSON.stringify(loginRes));
             props.setUser(UserFromToken(token));
         }
     }, [loginRes, loginErr]);
@@ -44,7 +51,12 @@ const HeaderUserSection: FunctionComponent<HeaderUserSectionProps> = (
             </button>
         );
     } else {
-        return <button onClick={props.logOut}>{user.id}</button>;
+        return (
+            <Wrapper>
+                <P>{`Logged in as: ${user.id}`}</P>
+                <P onClick={props.logOut}>Log out</P>
+            </Wrapper>
+        );
     }
 };
 

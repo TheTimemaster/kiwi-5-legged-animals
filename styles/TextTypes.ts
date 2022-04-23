@@ -19,15 +19,26 @@ type ColoredTextProps = {
 
 const LINE_HEIGHT_MULT = 1;
 
+// font-family: ${(p) => (p.bold ? 'AcuminPro-Bold' : 'AcuminPro-Regular')};
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-const ColoredText = (s: keyof IntrinsicElements) => styled(s as unknown as keyof IntrinsicElement)<ColoredTextProps>`
-    font-family: ${(p) => (p.bold ? 'AcuminPro-Bold' : 'AcuminPro-Regular')};
+const ColoredText = (s: keyof IntrinsicElements) => styled(
+    s as unknown as keyof IntrinsicElement,
+)<ColoredTextProps>`
     color: ${(p) => {
         const colScale = p.error
             ? p.theme.colors.primary
-            : [p.theme.colors.black, p.theme.colors.white, p.theme.colors.primary][p.color ?? TextColor.Black];
-        const col = p.strong ? colScale._100 : p.semistrong ? colScale._80 : colScale._60;
+            : [
+                  p.theme.colors.black,
+                  p.theme.colors.white,
+                  p.theme.colors.primary,
+              ][p.color ?? TextColor.Black];
+        const col = p.strong
+            ? colScale._100
+            : p.semistrong
+            ? colScale._80
+            : colScale._60;
         return p.invert ? col.invert() : col;
     }};
     ${(p) => (p.underline ? 'text-decoration: underline' : '')};

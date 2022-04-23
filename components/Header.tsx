@@ -4,6 +4,7 @@ import Center from './central/Center';
 import Image from 'next/image';
 import HeaderUserSection from './HeaderUserSection';
 import {User} from '../context/auth/UserContext';
+import Link from 'next/link';
 
 type HeaderProps = {
     setUser: (user: User) => void;
@@ -23,16 +24,22 @@ const HeaderWrapper = styled.header`
     background-color: ${(p) => p.theme.colors.white._100.toString()};
 `;
 
+const StyledCenter = styled(Center)`
+    justify-content: space-between;
+`;
+
 const Header: FunctionComponent<HeaderProps> = (props) => {
     return (
         <HeaderWrapper>
-            <Center>
-                <Image src={'/kiwicom-logo.svg'} height={60} width={60} />
+            <StyledCenter>
+                <Link href={'/'}>
+                    <Image src={'/kiwicom-logo.svg'} height={60} width={60} />
+                </Link>
                 <HeaderUserSection
                     setUser={props.setUser}
                     logOut={props.logOut}
                 />
-            </Center>
+            </StyledCenter>
         </HeaderWrapper>
     );
 };

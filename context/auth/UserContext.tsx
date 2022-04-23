@@ -44,6 +44,7 @@ export const UserPersistence: React.FC<UserPersistenceProps> = (props) => {
 
     useEffect(() => {
         const persistedToken = localStorage.getItem(tokenSave);
+        console.log('Context47:' + persistedToken);
         if (persistedToken) {
             const persistedUser = UserFromToken(persistedToken);
             console.log(persistedUser);
@@ -72,8 +73,7 @@ export const UserPersistence: React.FC<UserPersistenceProps> = (props) => {
     }, [user]);
 
     useEffect(() => {
-        if (newToken) {
-            console.log(newToken);
+        if (newToken?.token) {
             props.setUser(UserFromToken(newToken.token));
         }
     }, [newToken]);

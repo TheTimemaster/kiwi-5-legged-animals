@@ -12,7 +12,6 @@ const ListingWrapper = styled.main`
     width: 100%;
     margin: 50px auto;
     flex-wrap: wrap;
-    background-color: red;
     justify-content: center;
 `;
 

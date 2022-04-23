@@ -11,10 +11,6 @@ import SearchSection from '../components/SearchSection';
 import {useGetEndpoint} from '../api/hooks/useGetEndpoint';
 import {EventCore} from '../types/event';
 
-const App = styled.div`
-    margin-top: 70px;
-`;
-
 const OuterCenter = styled(Center)`
     flex-direction: column;
 `;
@@ -25,10 +21,10 @@ const Home: FunctionComponent = () => {
 
     useEffect(() => {
         getEvents();
-    }, [getEvents()]);
+    }, [getEvents]);
 
     return (
-        <App>
+        <>
             <SearchSection>
                 <Searchbar initialContent={'xd'} onChange={() => {}} />
             </SearchSection>
@@ -39,7 +35,7 @@ const Home: FunctionComponent = () => {
                     <EventsSection events={eventsData ?? []} />
                 )}
             </OuterCenter>
-        </App>
+        </>
     );
 };
 

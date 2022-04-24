@@ -8,4 +8,4 @@ export const jwtEncode = (data: any) => {
     return jwt;
 };
 
-export const range = (n: number): number[] => Array.from(Array(50).keys());
+export const range = (n: number): number[] => Array.from(Array(n).keys());

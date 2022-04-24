@@ -8,5 +8,5 @@ type Data = {
 };
 
 export default (req: NextApiRequest, res: NextApiResponse<EventCore[]>) => {
-    res.status(200).json(range(20).map((i) => DummyEvent(i.toString())));
+    res.status(200).json(range(48).map((i) => DummyEvent(i.toString())));
 };

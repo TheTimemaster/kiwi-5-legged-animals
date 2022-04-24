@@ -35,13 +35,21 @@ const Event: FunctionComponent = () => {
     const router = useRouter();
     const {id} = router.query;
 
+    if (id == undefined) return <div />;
+    return <InnerEvent id={id} />;
+};
+
+const InnerEvent: FunctionComponent<{id: string}> = (props) => {
     const [eventData, eventErr, getEvent] = useGetEndpoint<EventCore>(
-        '/api/event/' + id,
+        '/api/event/' + props.id,
     );
 
     useEffect(() => {
         getEvent();
-    }, []);
+    }, [props.id]);
+
+    const kiwiLink =
+        'https://www.kiwi.com/pl/wyszukiwanie/results/koszyce-slowacja/praga-czechypraga-czechy';
 
     return eventErr ? (
         <div>Error</div>
@@ -57,7 +65,7 @@ const Event: FunctionComponent = () => {
             <TravelSection>
                 <XCenter>
                     <H0>Travel</H0>
-                    <BookWithKiwiButton onClick={() => {}} />
+                    <BookWithKiwiButton link={kiwiLink} />
                 </XCenter>
             </TravelSection>
         </>

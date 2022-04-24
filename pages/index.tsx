@@ -16,14 +16,15 @@ const OuterCenter = styled(Center)`
 `;
 
 const Home: FunctionComponent = () => {
-    const [eventsData, eventsErr, getEvents] =
-        useGetEndpoint<EventCore[]>('api/events');
-
     const [search, setSearch] = useState('');
+    const [eventsData, eventsErr, getEvents] = useGetEndpoint<EventCore[]>(
+        'api/dbsearch?search=' + search,
+    );
 
     useEffect(() => {
+        console.log(search);
         getEvents();
-    }, []);
+    }, [search]);
 
     return (
         <>
@@ -34,15 +35,7 @@ const Home: FunctionComponent = () => {
                 {eventsErr ? (
                     <div>Error</div>
                 ) : (
-                    <EventsSection
-                        events={
-                            eventsData?.filter(
-                                (e) =>
-                                    e.name.includes(search) ||
-                                    search.length == 0,
-                            ) ?? []
-                        }
-                    />
+                    <EventsSection events={eventsData ?? []} />
                 )}
             </OuterCenter>
         </>

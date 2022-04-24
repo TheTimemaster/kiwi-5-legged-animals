@@ -13,6 +13,14 @@ export const Wrapper = styled.div`
     display: flex;
 `;
 
+const ClickableP = styled(P)`
+    margin-left: 20px;
+
+    &:hover {
+        color: ${(p) => p.theme.colors.primary._100.toString()};
+    }
+`;
+
 const HeaderUserSection: FunctionComponent<HeaderUserSectionProps> = (
     props,
 ) => {
@@ -41,20 +49,20 @@ const HeaderUserSection: FunctionComponent<HeaderUserSectionProps> = (
 
     if (user?.id == undefined) {
         return (
-            <button
+            <ClickableP
                 onClick={() => {
                     setLogin('login');
                     setPassword('password');
                     tryLogin();
                 }}>
                 Login
-            </button>
+            </ClickableP>
         );
     } else {
         return (
             <Wrapper>
                 <P>{`Logged in as: ${user.id}`}</P>
-                <P onClick={props.logOut}>Log out</P>
+                <ClickableP onClick={props.logOut}>Log out</ClickableP>
             </Wrapper>
         );
     }

@@ -6,12 +6,14 @@ import Link from 'next/link';
 import {H2} from '../styles/TextTypes';
 
 const Wrapper = styled.article`
-    width: 200px;
-    max-width: 210px;
-    min-width: 190px;
-    height: 150px;
+    width: 300px;
+    max-width: 310px;
+    min-width: 290px;
+    height: 200px;
     margin: 5px;
     flex: 1;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     background-color: ${(p) => p.theme.colors.black._20.toString()};
 `;
@@ -24,10 +26,14 @@ type EventDisplayerProps = {
 
 const EventImage = styled.div<{src: string}>`
     width: 100%;
-    height: 110px;
+    height: 160px;
     background-position: center;
     background-size: cover;
     background-image: ${(p) => `url("${p.src}")`};
+`;
+
+const TextField = styled(H2)`
+    margin: auto;
 `;
 
 const EventDisplayer: FunctionComponent<EventDisplayerProps> = (props) => {
@@ -35,7 +41,7 @@ const EventDisplayer: FunctionComponent<EventDisplayerProps> = (props) => {
         <Link href={'/event/' + props.event.id}>
             <ShadowWrapper>
                 <EventImage src={props.event.picture} />
-                <H2>{props.event.name}</H2>
+                <TextField>{props.event.name}</TextField>
             </ShadowWrapper>
         </Link>
     );

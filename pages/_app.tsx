@@ -10,6 +10,7 @@ import UserContext, {
 import {Optional} from '../utils';
 import {useState} from 'react';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -20,6 +21,10 @@ const GlobalStyle = createGlobalStyle`
 
 const App = styled.div`
     margin-top: 70px;
+    min-height: calc(100vh - 70px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `;
 
 function MyApp({Component, pageProps}: AppProps) {
@@ -38,6 +43,7 @@ function MyApp({Component, pageProps}: AppProps) {
                 <Header setUser={setUser} logOut={logOutMe} />
                 <App>
                     <Component {...pageProps} />
+                    <Footer />
                 </App>
             </UserContext.Provider>
         </ThemeContext.Provider>
